@@ -5,6 +5,7 @@
 [Bb]uilds/
 [Ll]ogs/
 Assets/AssetStoreTools*
+MemoryGame/Assets/Firebase
 
 # Visual Studio cache directory
 .vs/

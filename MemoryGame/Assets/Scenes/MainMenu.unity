@@ -1545,6 +1545,7 @@ GameObject:
   - component: {fileID: 1885145265}
   - component: {fileID: 1885145264}
   - component: {fileID: 1885145266}
+  - component: {fileID: 1885145267}
   m_Layer: 0
   m_Name: ButtonHandler
   m_TagString: Untagged
@@ -1588,5 +1589,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c5da4ad727325d42bbbe227b8648481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1885145267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885145263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1b3c29d6519c749aca66f2de654bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
