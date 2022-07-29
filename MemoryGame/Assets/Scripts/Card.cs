@@ -40,6 +40,7 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //If a card is clicked while not rotating, play audio clip
         if (clicked == false)
         {
             cardManager.currentCardState = CardManager.CardState.CardRotating;
@@ -56,6 +57,7 @@ public class Card : MonoBehaviour
 
     public void FlipBack()
     {
+        //When cards are flipped back to their hidden state and sound is not muted the soundclip is played.
         if (gameObject.activeSelf)
         {
             cardManager.currentCardState = CardManager.CardState.CardRotating;

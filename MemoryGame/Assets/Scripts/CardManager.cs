@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
@@ -13,14 +15,17 @@ public class CardManager : MonoBehaviour
     [Header("End Game Screen")]
     public GameObject EndGamePanel;
 
-    public GameObject NewBestTimeText;
-    public GameObject YourTimeText;
+    public TextMeshProUGUI YourTimeText;
     public GameObject RoundTimeText;
 
     private bool coroutineStarted = false;
     private int cardNumbers;
     private int removedCards;
     private Timer gameTimer;
+    private float endTime;
+
+    public TMP_InputField inputName;
+    public Button submitButton;
 
     public enum GameState 
     {
@@ -236,8 +241,6 @@ public class CardManager : MonoBehaviour
         {
             currentGameState = GameState.GameEnd;
             gameTimer.StopTimer();
-            Config.PlaceScoreOnBoard(gameTimer.GetCurrentTime());
-
         }
 
         return (currentGameState == GameState.GameEnd);
@@ -246,24 +249,29 @@ public class CardManager : MonoBehaviour
     {
         EndGamePanel.SetActive(true);
 
-        if(Config.IsBestScore())
-        {
-            NewBestTimeText.SetActive(true);
-            YourTimeText.SetActive(false);
-        }
-        else
-        {
-            NewBestTimeText.SetActive(false);
-            YourTimeText.SetActive(true);
-        }
-
-        var timer = gameTimer.GetCurrentTime();
-        var minutes = Mathf.Floor(timer / 60);
-        var seconds = Mathf.RoundToInt(timer % 60);
+        endTime = gameTimer.GetCurrentTime();
+        var minutes = Mathf.Floor(endTime / 60);
+        var seconds = Mathf.RoundToInt(endTime % 60);
         var newText = minutes.ToString("00") + ":" + seconds.ToString("00");
-        RoundTimeText.GetComponent<Text>().text = newText;
+        YourTimeText.text = newText;
     }
 
+    public void SubmitScore()
+    {
+        //Generate a random unique identifier ("2ac132ab-ed0b-478c-9499-e593b1564a09")
+        var uuid = System.Guid.NewGuid().ToString();
+        var date = System.DateTime.Now;
+        var dateString = date.ToString("dd/MM-yy");
+        var highscoreEntry = new HighscoreEntry(inputName.text, GameSettings.Instance.GetEFighterSelection().ToString(), dateString, endTime);
+        string jsonString = JsonUtility.ToJson(highscoreEntry);
+        SaveManager.Instance.SaveData("Highscores" + (int)GameSettings.Instance.GetCardNumber() + "/" + uuid, jsonString, ShowSubmitCompleted);
+        submitButton.interactable = false;
+    }
+
+    private void ShowSubmitCompleted()
+    {
+        SceneManager.LoadScene("ScoreScene");
+    }
 
     private void SpawnCardMesh(int rows, int columns, Vector2 pos, Vector2 offset, bool scaleDown)
         //Adds cardprefabs for each row/column position available

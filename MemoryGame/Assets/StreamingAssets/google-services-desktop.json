@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "130253973558",
+    "firebase_url": "https://fir-memory-game-project-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fir-memory-game-project",
+    "storage_bucket": "fir-memory-game-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130253973558:android:3da4a9988359b3f30e1097",
+        "android_client_info": {
+          "package_name": "com.google.firebase.memory.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130253973558-05uf6er7f9oa0lk8l3mpar5ero5qau7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE8tk9HecHSRRYtAD3tgYOQ9vPl3ppw5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130253973558-05uf6er7f9oa0lk8l3mpar5ero5qau7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

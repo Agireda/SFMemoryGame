@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour
 {
-    private void Start()
-    {
-        Config.CreateScoreFile();
-    }
     // Loads scene based on name
     public void LoadScene(string scene_name)
     {
@@ -18,5 +14,11 @@ public class ButtonBehaviour : MonoBehaviour
     public void ResetGameSettings()
     {
         GameSettings.Instance.ResetGameSettings();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit Game");
     }
 }

@@ -6,7 +6,7 @@ public class GameSettings : MonoBehaviour
 {
     private readonly Dictionary<EFighterSelection, string> fighterSelectionDirectory = new Dictionary<EFighterSelection, string>();
     private int settings;
-    private Settings gameSettings;
+    public Settings gameSettings;
     private const int settingsNumber = 2; // Checks if 2 settings have been made so that the game can start
     public static GameSettings Instance;
     private bool muteSounds = false;
@@ -32,6 +32,7 @@ public class GameSettings : MonoBehaviour
 
     private void Awake()
     {
+        //If there is no instance, don't destroy it on load. If there was already an instance, destroy it.
         if (Instance == null)
         {
             DontDestroyOnLoad(this);
@@ -58,6 +59,7 @@ public class GameSettings : MonoBehaviour
 
     public void SetCardNumber(ECardNumber Number)
     {
+        //If the amount of cards or the fighter hasn't been selected, the game won't start as there are still settings to be made.
         if (gameSettings.cardNumber == ECardNumber.NotSet)
             settings++;
 
@@ -65,6 +67,7 @@ public class GameSettings : MonoBehaviour
     }
     public void SetFighter(EFighterSelection Fighter)
     {
+        //If the amount of cards or the fighter hasn't been selected, the game won't start as there are still settings to be made.
         if (gameSettings.fighterSelection == EFighterSelection.NotSet)
             settings++;
         gameSettings.fighterSelection = Fighter;
