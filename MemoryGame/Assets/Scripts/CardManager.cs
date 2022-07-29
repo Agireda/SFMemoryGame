@@ -61,8 +61,7 @@ public class CardManager : MonoBehaviour
     public List<Card> cardList;
 
     private Vector2 offset20C = new Vector2(1.25f, 1.25f);
-    private Vector2 offset30C = new Vector2(1.08f, 1.22f);
-    private Vector2 offset40C = new Vector2(1.08f, 1.0f);
+    private Vector2 offset30C = new Vector2(0.95f, 1.22f);
     private Vector3 newScaleDown = new Vector3(0.9f, 0.9f, 0.001f);
 
     private List<Material> materialList = new List<Material>();
@@ -102,12 +101,6 @@ public class CardManager : MonoBehaviour
             SpawnCardMesh(5, 6, startPosition, offset30C, false);
             MoveCard(5, 6, startPosition, offset30C);
         }
-        //else if (GameSettings.Instance.GetCardNumber() == GameSettings.ECardNumber.E40Cards)
-        //{
-        //    currentGameState = GameState.MovingToPositions;
-        //    SpawnCardMesh(5, 8, startPosition, offset30C, true);
-        //    MoveCard(5, 8, startPosition, offset30C);
-        //}
     }
 
     public void CheckCard()
@@ -157,6 +150,7 @@ public class CardManager : MonoBehaviour
 
     private void DestroyCard()
     {
+        //A function to destroy the cards and increases number of removed cards by 2.
         cardRevealedNumber = RevealedState.NoRevealed;
         cardList[cardToDestroy1].Deactivate();
         cardList[cardToDestroy2].Deactivate();
@@ -334,25 +328,6 @@ public class CardManager : MonoBehaviour
             var counter = 0;
             var forceMaterial = false;
 
-            /*while(AppliedTimes[randomMaterialIndex] >= 2 || ((randPrevious == randomMaterialIndex) && !forceMaterial))
-            {
-                randomMaterialIndex = Random.Range(0, materialList.Count);
-                counter++;
-                //Tries to apply a specific material, if it doesn't succeed in 100 tries, loop through the list and apply the next available material that hasn't been applied yet
-                if (counter > 100)
-                {
-                    for (var j = 0; j < materialList.Count; j++)
-                    {
-                        if (AppliedTimes[j] < 2)
-                        {
-                            randomMaterialIndex = j;
-                            forceMaterial = true;
-                        }
-                    }
-                    if (forceMaterial == false)
-                        return;
-                }
-            }*/
 
             randomMaterialIndex = pictureIndicesInGame[i];
             Debug.Log($"For card #{i} picture index is {randomMaterialIndex}");
